@@ -3,7 +3,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./ui/theme";
 import { Inter } from "next/font/google";
-import BasicBottomNavigaion from "./components/BasicBottomNavigaion";
+import { BasicBottomNavigaion } from "./components/BasicBottomNavigaion";
 import { CustomAppBar } from "./components/CustomAppBar";
 import "./globals.css";
 

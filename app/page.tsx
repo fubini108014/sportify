@@ -1,7 +1,4 @@
-import Image from "next/image";
 import Link from "next/link";
-import ProductCard from "./components/ProductCard";
-import BasicButtonGroup from "./components/BasicButtonGroup";
 import { Chip } from "@mui/material";
 
 // 定義運動項目類型

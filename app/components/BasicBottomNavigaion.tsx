@@ -1,6 +1,5 @@
 "use client";
 import * as React from "react";
-import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Paper from "@mui/material/Paper";
@@ -32,7 +31,7 @@ const siteRoutes = [
   { label: "個人", href: "/personal", icon: <AccountCircleIcon /> },
 ];
 
-const BasicBottomNavigaion = () => {
+export const BasicBottomNavigaion = () => {
   const pathname = usePathname();
   const [value, setValue] = React.useState(siteRoutes[0].href);
   const [open, setOpen] = React.useState(false);
@@ -72,5 +71,3 @@ const BasicBottomNavigaion = () => {
     </BottomNavigaionWrapper>
   );
 };
-
-export default BasicBottomNavigaion;

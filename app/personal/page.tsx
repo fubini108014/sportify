@@ -1,10 +1,4 @@
-import { AccountCircle } from "@mui/icons-material";
 import {
-  Input,
-  FormControl,
-  InputLabel,
-  InputAdornment,
-  Box,
   TextField,
   Stack,
   Container,
@@ -12,7 +6,7 @@ import {
   MenuItem,
   Avatar,
 } from "@mui/material";
-import { deepOrange, deepPurple } from "@mui/material/colors";
+import { deepPurple } from "@mui/material/colors";
 
 const gender = [
   // { value: "", label: "請選擇性別" },
