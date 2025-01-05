@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  AppBar,
-  Container,
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { AppBar, Container, Toolbar, Typography } from "@mui/material";
 import AdbIcon from "@mui/icons-material/Adb";
-import SearchIcon from "@mui/icons-material/Search";
 import Link from "next/link";
 
 export const CustomAppBar = () => {
@@ -22,7 +15,8 @@ export const CustomAppBar = () => {
           <Typography
             variant="h6"
             noWrap
-            component="div"
+            component={Link}
+            href="/"
             sx={{
               mr: 2,
               display: "flex",
@@ -36,18 +30,6 @@ export const CustomAppBar = () => {
           >
             LOGO
           </Typography>
-
-          <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            component={Link}
-            href="/search"
-            color="inherit"
-          >
-            <SearchIcon />
-          </IconButton>
         </Toolbar>
       </Container>
     </AppBar>

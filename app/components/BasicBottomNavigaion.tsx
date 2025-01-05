@@ -7,12 +7,12 @@ import Link from "next/link";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import HomeIcon from "@mui/icons-material/Home";
 import GroupsIcon from "@mui/icons-material/Groups";
 import { usePathname } from "next/navigation";
 import NewActivityDialog from "./NewActivityDialog";
 import { useEffect } from "react";
 import { styled } from "@mui/material/styles";
+import ExploreIcon from "@mui/icons-material/Explore";
 
 const BottomNavigaionWrapper = styled(Paper)({
   position: "fixed",
@@ -24,11 +24,11 @@ const BottomNavigaionWrapper = styled(Paper)({
   },
 });
 const siteRoutes = [
-  { label: "首頁", href: "/", icon: <HomeIcon /> },
-  { label: "社團", href: "/club", icon: <GroupsIcon /> },
-  { label: "活動", href: "/activity", icon: <AddCircleIcon /> },
-  { label: "通知", href: "/notification", icon: <NotificationsIcon /> },
-  { label: "個人", href: "/personal", icon: <AccountCircleIcon /> },
+  { label: "活動探索", href: "/search", icon: <ExploreIcon /> },
+  { label: "社團管理", href: "/club", icon: <GroupsIcon /> },
+  { label: "發起活動", href: "/activity", icon: <AddCircleIcon /> },
+  { label: "活動通知", href: "/notification", icon: <NotificationsIcon /> },
+  { label: "個人中心", href: "/personal", icon: <AccountCircleIcon /> },
 ];
 
 export const BasicBottomNavigaion = () => {
