@@ -5,20 +5,54 @@ import { useSearchParams } from "next/navigation";
 import { Container } from "@mui/material";
 import React from "react";
 import ClubCard from "./ClubCard";
-import ClubInfoDialog from "./ClubInfoDialog";
-
-const clubData = [
+import { ClubInfoDialog } from "./ClubInfoDialog";
+import { ActivityRegisterDialog } from "./ActivityRegisterDialog";
+interface Club {
+  id: string;
+  name: string;
+  areaCode: string;
+  categoryCode: string;
+  activity?: {
+    id: string;
+    name: string;
+    date: string;
+    time: string;
+    location: string;
+    description: string;
+  }[];
+}
+const clubData: Club[] = [
   {
     id: "1",
     name: "社團 NO.1",
     areaCode: "taitung",
     categoryCode: "volleyball",
+    activity: [
+      {
+        id: "1",
+        name: "揪團活動1",
+        date: "2025-01-01",
+        time: "10:00",
+        location: "台北市",
+        description: "活動1的描述",
+      },
+    ],
   },
   {
     id: "2",
     name: "社團 NO.2",
     areaCode: "chiayi",
     categoryCode: "basketball",
+    activity: [
+      {
+        id: "2",
+        name: "揪團活動2",
+        date: "2025-01-01",
+        time: "10:00",
+        location: "台北市",
+        description: "活動2的描述",
+      },
+    ],
   },
   { id: "3", name: "社團 NO.3", areaCode: "hsinchu", categoryCode: "football" },
   {
@@ -26,12 +60,32 @@ const clubData = [
     name: "社團 NO.4",
     areaCode: "taichung",
     categoryCode: "volleyball",
+    activity: [
+      {
+        id: "4",
+        name: "揪團活動4",
+        date: "2025-01-01",
+        time: "10:00",
+        location: "台北市",
+        description: "活動4的描述",
+      },
+    ],
   },
   {
     id: "5",
     name: "社團 NO.5",
     areaCode: "chiayi",
     categoryCode: "basketball",
+    activity: [
+      {
+        id: "5",
+        name: "揪團活動5",
+        date: "2025-01-01",
+        time: "10:00",
+        location: "台北市",
+        description: "活動5的描述",
+      },
+    ],
   },
   { id: "6", name: "社團 NO.6", areaCode: "tpe", categoryCode: "football" },
   {
@@ -39,12 +93,32 @@ const clubData = [
     name: "社團 NO.7",
     areaCode: "taitung",
     categoryCode: "volleyball",
+    activity: [
+      {
+        id: "7",
+        name: "揪團活動7",
+        date: "2025-01-01",
+        time: "10:00",
+        location: "台北市",
+        description: "活動7的描述",
+      },
+    ],
   },
   {
     id: "8",
     name: "社團 NO.8",
     areaCode: "chiayi",
     categoryCode: "basketball",
+    activity: [
+      {
+        id: "8",
+        name: "揪團活動8",
+        date: "2025-01-01",
+        time: "10:00",
+        location: "台北市",
+        description: "活動8的描述",
+      },
+    ],
   },
   { id: "9", name: "社團 NO.9", areaCode: "tpe", categoryCode: "football" },
   {
@@ -52,6 +126,16 @@ const clubData = [
     name: "社團 NO.10",
     areaCode: "ntpc",
     categoryCode: "volleyball",
+    activity: [
+      {
+        id: "10",
+        name: "揪團活動10",
+        date: "2025-01-01",
+        time: "10:00",
+        location: "台北市",
+        description: "活動10的描述",
+      },
+    ],
   },
 ];
 
@@ -61,16 +145,43 @@ export const SearchList = () => {
   const category = searchParams.get("category");
 
   //TODO:卡片式UI設計
-  const [{ open, clubId }, setClub] = React.useState<{
-    open: boolean;
-    clubId: string;
-  }>({ open: false, clubId: "" });
-  const handleClickOpen = (id: string) => {
-    setClub({ open: true, clubId: id });
+  const [
+    { openClubDialog, selectedClubId, openActivityDialog, selectedActivityId },
+    setDialog,
+  ] = React.useState<{
+    openClubDialog: boolean;
+    selectedClubId: string;
+    openActivityDialog: boolean;
+    selectedActivityId: string;
+  }>({
+    openClubDialog: false,
+    selectedClubId: "",
+    openActivityDialog: false,
+    selectedActivityId: "",
+  });
+  const handleClickOpenClubDialog = (clubId: string) => {
+    setDialog((prev) => ({
+      ...prev,
+      openClubDialog: true,
+      selectedClubId: clubId,
+    }));
+  };
+  const handleClickOpenActivityDialog = (activityId: string) => {
+    setDialog((prev) => ({
+      ...prev,
+      openActivityDialog: true,
+      selectedActivityId: activityId,
+    }));
   };
 
   const handleClose = () => {
-    setClub((prev) => ({ ...prev, open: false, clubId: "" }));
+    setDialog((prev) => ({
+      ...prev,
+      openClubDialog: false,
+      openActivityDialog: false,
+      selectedClubId: "",
+      selectedActivityId: "",
+    }));
   };
 
   return (
@@ -84,12 +195,26 @@ export const SearchList = () => {
       <Box sx={{ minHeight: 393 }}>
         <Masonry columns={{ xs: 1, sm: 2, md: 3 }} spacing={0}>
           {clubData.map((club) => (
-            <ClubCard key={club.id} {...club} onClick={handleClickOpen} />
+            <ClubCard
+              key={club.id}
+              {...club}
+              onClickOpenClubDialog={handleClickOpenClubDialog}
+              onClickOpenActivityDialog={handleClickOpenActivityDialog}
+            />
           ))}
         </Masonry>
       </Box>
 
-      <ClubInfoDialog open={open} onClose={handleClose} id={clubId} />
+      <ClubInfoDialog
+        open={openClubDialog}
+        onClose={handleClose}
+        clubId={selectedClubId}
+      />
+      <ActivityRegisterDialog
+        open={openActivityDialog}
+        onClose={handleClose}
+        activityId={selectedActivityId}
+      />
     </Container>
   );
 };

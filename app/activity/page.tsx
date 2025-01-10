@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 export default function ActivityPage() {
@@ -41,24 +40,18 @@ export default function ActivityPage() {
       >
         <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
         <DialogContent dividers={true}>
-          <DialogContentText
-            id="scroll-dialog-description"
-            ref={descriptionElementRef}
-            tabIndex={-1}
-          >
-            {[...new Array(50)]
-              .map(
-                () => `Cras mattis consectetur purus sit amet fermentum.
-Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
-              )
-              .join("\n")}
-          </DialogContentText>
+          <div>活動社團(下拉選項)</div>
+          <div>發起人</div>
+          <div>活動名稱</div>
+          <div>活動地點</div>
+          <div>活動費用</div>
+          <div>招募人數</div>
+          <div>顯示報名名單(選項)</div>
+          <div>活動描述</div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={handleClose}>取消</Button>
+          <Button onClick={handleClose}>送出</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
