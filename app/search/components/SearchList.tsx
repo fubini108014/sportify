@@ -1,12 +1,12 @@
 "use client";
 import { Masonry } from "@mui/lab";
 import { Box } from "@mui/material";
-import { useSearchParams } from "next/navigation";
 import { Container } from "@mui/material";
 import React from "react";
 import ClubCard from "./ClubCard";
 import { ClubInfoDialog } from "./ClubInfoDialog";
 import { ActivityRegisterDialog } from "./ActivityRegisterDialog";
+import { SearchConditions } from "./SearchConditions";
 interface Club {
   id: string;
   name: string;
@@ -140,10 +140,6 @@ const clubData: Club[] = [
 ];
 
 export const SearchList = () => {
-  const searchParams = useSearchParams();
-  const area = searchParams.get("area");
-  const category = searchParams.get("category");
-
   //TODO:卡片式UI設計
   const [
     { openClubDialog, selectedClubId, openActivityDialog, selectedActivityId },
@@ -183,17 +179,13 @@ export const SearchList = () => {
       selectedActivityId: "",
     }));
   };
-
+  console.log("clubData:", clubData);
   return (
     <Container maxWidth="md">
-      <Box sx={{ height: 150, backgroundColor: "#ddd" }}>
-        篩選條件區
-        <div>您選了地區:{area || "全部"}</div>
-        <div>您選了運動分類:{category || "全部"}</div>
-      </Box>
+      <SearchConditions />
 
       <Box sx={{ minHeight: 393 }}>
-        <Masonry columns={{ xs: 1, sm: 2, md: 3 }} spacing={0}>
+        <Masonry sx={{ m: 0 }} columns={{ xs: 1, sm: 2, md: 3 }} spacing={1}>
           {clubData.map((club) => (
             <ClubCard
               key={club.id}

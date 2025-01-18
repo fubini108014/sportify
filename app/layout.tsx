@@ -5,7 +5,9 @@ import theme from "./ui/theme";
 import { Inter } from "next/font/google";
 import { BasicBottomNavigaion } from "./components/BasicBottomNavigaion";
 import { CustomAppBar } from "./components/CustomAppBar";
+
 import "./globals.css";
+import { DatePickerProvider } from "./provider/DatePickerProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,13 +24,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <ThemeProvider theme={theme}>
-            <CustomAppBar />
-            {children}
-            <BasicBottomNavigaion />
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+        <DatePickerProvider>
+          <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+            <ThemeProvider theme={theme}>
+              <CustomAppBar />
+              {children}
+              <BasicBottomNavigaion />
+            </ThemeProvider>
+          </AppRouterCacheProvider>
+        </DatePickerProvider>
       </body>
     </html>
   );
