@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { areas } from "@/app/constants/taiwanCity";
 import { sports } from "@/app/constants/sportCategory";
 import { DatePicker } from "@mui/x-date-pickers";
-import { SearchKeyword } from "./SearchKeyword";
+import { SearchKeyword } from "./filterComponents/SearchKeyword";
 import { Dayjs } from "dayjs";
 import { ButtonGroupSorting } from "./filterComponents/ButtonGroupSorting";
 
@@ -40,9 +40,8 @@ export const SearchConditions = () => {
     setFilter((prev) => ({ ...prev, areaId: area, sportId: category }));
   }, [area, category]);
 
-  const handleOnChangKeyword = (keyword: string) => {
-    console.log("v:", keyword);
-    setFilter((prev) => ({ ...prev, keyword }));
+  const handleOnChangKeyword = (newKeyword: string) => {
+    setFilter((prev) => ({ ...prev, keyword: newKeyword }));
   };
   const handleOnChangDate = (date: Dayjs | null) => {
     console.log("v:", date?.format("YYYY/MM/DD"));
@@ -92,7 +91,10 @@ export const SearchConditions = () => {
           />
         </Grid>
         <Grid size={{ xs: 8, sm: 8, md: 8 }}>
-          <SearchKeyword onChange={handleOnChangKeyword} />
+          <SearchKeyword
+            //value={filter.keyword}
+            onSearch={handleOnChangKeyword}
+          />
         </Grid>
         <Grid size={{ xs: 4, sm: 4, md: 4 }}>
           <ButtonGroupSorting

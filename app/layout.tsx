@@ -3,8 +3,6 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./ui/theme";
 import { Inter } from "next/font/google";
-import { BasicBottomNavigaion } from "./components/BasicBottomNavigaion";
-import { CustomAppBar } from "./components/CustomAppBar";
 
 import "./globals.css";
 import { DatePickerProvider } from "./provider/DatePickerProvider";
@@ -26,11 +24,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <DatePickerProvider>
           <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-            <ThemeProvider theme={theme}>
-              <CustomAppBar />
-              {children}
-              <BasicBottomNavigaion />
-            </ThemeProvider>
+            <ThemeProvider theme={theme}>{children}</ThemeProvider>
           </AppRouterCacheProvider>
         </DatePickerProvider>
       </body>

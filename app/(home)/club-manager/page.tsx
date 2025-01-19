@@ -7,7 +7,7 @@ const dataSource = [
   { id: 2, name: "社團 2", area: "台北", category: "籃球" },
   { id: 3, name: "社團 3", area: "新竹", category: "足球" },
 ];
-export default function ClubPage() {
+export default function ClubManagerPage() {
   return (
     <div>
       <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>

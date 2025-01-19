@@ -25,7 +25,7 @@ const BottomNavigaionWrapper = styled(Paper)({
 });
 const siteRoutes = [
   { label: "活動探索", href: "/search", icon: <ExploreIcon /> },
-  { label: "社團管理", href: "/club", icon: <GroupsIcon /> },
+  { label: "社團管理", href: "/club-manager", icon: <GroupsIcon /> },
   { label: "發起活動", href: "/activity", icon: <AddCircleIcon /> },
   { label: "活動通知", href: "/notification", icon: <NotificationsIcon /> },
   { label: "個人中心", href: "/personal", icon: <AccountCircleIcon /> },
