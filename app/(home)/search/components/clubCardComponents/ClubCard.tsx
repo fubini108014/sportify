@@ -13,7 +13,7 @@ import { ActivityCard } from "./ActivityCard";
 const ClubCardPaper = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
   ...theme.typography.body2,
-  padding: theme.spacing(0.5),
+  padding: theme.spacing(1),
   //height: 150,
   //margin: theme.spacing(0.5),
   textAlign: "center",
@@ -56,7 +56,7 @@ const ClubCard = (props: ClubCardProps) => {
         direction="row"
         spacing={1}
         justifyContent="start"
-        sx={{ overflowX: "auto" }}
+        sx={{ overflowX: "auto", marginTop: "4px" }}
       >
         {activity.map((activity, idx) => (
           <ActivityCard

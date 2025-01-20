@@ -51,12 +51,20 @@ const clubData: Club[] = [
         description: "消夜暢打的描述",
       },
       {
-        id: "2",
+        id: "3",
         name: "早起熱血開打",
         date: "2025-01-05",
         time: "6:00",
         location: "追求人生",
         description: "早起熱血開打的描述",
+      },
+      {
+        id: "4",
+        name: "打打打",
+        date: "2025-01-06",
+        time: "9:00",
+        location: "告四排球館",
+        description: "XXXXXXXX",
       },
     ],
   },
@@ -231,13 +239,12 @@ export const SearchList = () => {
       selectedActivityId: "",
     }));
   };
-  console.log("clubData:", clubData);
-  return (
-    <Container maxWidth="md">
-      <SearchConditions />
 
+  return (
+    <Container sx={{ padding: "0px 4px" }}>
+      <SearchConditions />
       <Box sx={{ minHeight: 393 }}>
-        <Masonry sx={{ m: 0 }} columns={{ xs: 1, sm: 2, md: 3 }} spacing={1}>
+        <Masonry sx={{ m: 0 }} columns={{ xs: 1, sm: 2, md: 3 }} spacing={1.5}>
           {clubData.map((club) => (
             <ClubCard
               key={club.id}

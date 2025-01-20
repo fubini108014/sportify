@@ -13,10 +13,11 @@ const ActivityCardWrapper = styled(Box)(() => ({
   padding: "4px 8px",
   margin: "4px",
   cursor: "pointer",
+  minWidth: "140px",
   //width: "100px",
   //height: "46px",
   textAlign: "left",
-  fontSize: "12px",
+  fontSize: "14px",
   whiteSpace: "nowrap",
 }));
 
