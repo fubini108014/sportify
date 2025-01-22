@@ -1,66 +1,19 @@
 import React from "react";
-import {
-  ButtonGroup,
-  Button,
-  MenuItem,
-  styled,
-  alpha,
-  Box,
-} from "@mui/material";
+import { ButtonGroup, Button, Box } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import Menu, { MenuProps } from "@mui/material/Menu";
-import Divider from "@mui/material/Divider";
 import SortIcon from "@mui/icons-material/Sort";
 import { SortInfo } from "../SearchConditions";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { SelectedSortMenu } from "./SelectedSortMenu";
+import { SelectedSortDialog } from "./SelectedSortDialog";
 
-const StyledMenu = styled((props: MenuProps) => (
-  <Menu
-    elevation={0}
-    anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "right",
-    }}
-    transformOrigin={{
-      vertical: "top",
-      horizontal: "right",
-    }}
-    {...props}
-  />
-))(({ theme }) => ({
-  "& .MuiPaper-root": {
-    borderRadius: 6,
-    marginTop: theme.spacing(1),
-    minWidth: 180,
-    color: "rgb(55, 65, 81)",
-    boxShadow:
-      "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
-    "& .MuiMenu-list": {
-      padding: "4px 0",
-    },
-    "& .MuiMenuItem-root": {
-      "& .MuiSvgIcon-root": {
-        fontSize: 18,
-        color: theme.palette.text.secondary,
-        marginRight: theme.spacing(1.5),
-      },
-      "&:active": {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity
-        ),
-      },
-    },
-    ...theme.applyStyles("dark", {
-      color: theme.palette.grey[300],
-    }),
-  },
-}));
-
-const sortTypeOptions = [
+export type Option = { value: string; text: string };
+export const sortTypeOptions: Option[] = [
   { value: "hot", text: "熱門度" },
   { value: "time", text: "時間遠近" },
   { value: "name", text: "社團名稱" },
 ];
+
 interface ButtonGroupSortingProps {
   sortInfo: SortInfo;
   onChange: (obj: SortInfo) => void;
@@ -70,7 +23,9 @@ export const ButtonGroupSorting = ({
   sortInfo,
   onChange,
 }: ButtonGroupSortingProps) => {
-  console.log("sortInfo:", sortInfo);
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
+  console.log("isMobile:", isMobile);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleOpenMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -100,40 +55,51 @@ export const ButtonGroupSorting = ({
 
   return (
     <Box sx={{ textAlign: "end" }}>
-      <ButtonGroup size="small" aria-label="Small button group">
+      <ButtonGroup
+        aria-label="Small button group"
+        sx={{ height: "40px", whiteSpace: "nowrap" }}
+      >
         <Button
           key="one"
           disableElevation
           onClick={handleOpenMenu}
           endIcon={<KeyboardArrowDownIcon />}
+          sx={{
+            padding: "4px 8px",
+            borderTopLeftRadius: "8px",
+            borderBottomLeftRadius: "8px",
+          }}
         >
           {buttonTypeText}
         </Button>
-        <Button key="two" onClick={handleChangeSortDirection}>
+        <Button
+          key="two"
+          onClick={handleChangeSortDirection}
+          sx={{
+            padding: "4px 8px",
+            borderTopRightRadius: "8px",
+            borderBottomRightRadius: "8px",
+          }}
+        >
           {buttonDirectionText}
         </Button>
       </ButtonGroup>
-      <StyledMenu
-        id="demo-customized-menu"
-        MenuListProps={{
-          "aria-labelledby": "demo-customized-button",
-        }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-      >
-        排序依據
-        <Divider sx={{ my: 0.5 }} />
-        {sortTypeOptions.map((_) => (
-          <MenuItem
-            key={_.value}
-            onClick={() => handleChangSortType(_.value)}
-            disableRipple
-          >
-            {_.text}
-          </MenuItem>
-        ))}
-      </StyledMenu>
+      {isMobile ? (
+        <SelectedSortDialog
+          options={sortTypeOptions}
+          open={open}
+          onClick={handleChangSortType}
+          onClose={handleClose}
+        />
+      ) : (
+        <SelectedSortMenu
+          anchorEl={anchorEl}
+          options={sortTypeOptions}
+          onClick={handleChangSortType}
+          open={open}
+          onClose={handleClose}
+        />
+      )}
     </Box>
   );
 };

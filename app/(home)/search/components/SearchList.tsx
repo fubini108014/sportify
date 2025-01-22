@@ -244,7 +244,11 @@ export const SearchList = () => {
     <Container sx={{ padding: "0px 4px" }}>
       <SearchConditions />
       <Box sx={{ minHeight: 393 }}>
-        <Masonry sx={{ m: 0 }} columns={{ xs: 1, sm: 2, md: 3 }} spacing={1.5}>
+        <Masonry
+          sx={{ m: 0 }}
+          columns={{ xs: 1, sm: 2, md: 2, lg: 3 }}
+          spacing={1.5}
+        >
           {clubData.map((club) => (
             <ClubCard
               key={club.id}

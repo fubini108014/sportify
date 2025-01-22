@@ -28,7 +28,8 @@ export const SearchKeyword = ({ onSearch }: SearchKeywordProps) => {
         p: "2px 4px",
         display: "flex",
         alignItems: "center",
-        width: "100%",
+        maxWidth: "300px",
+        height: "40px",
       }}
     >
       <InputBase
