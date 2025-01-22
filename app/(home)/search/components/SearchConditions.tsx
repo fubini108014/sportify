@@ -58,7 +58,46 @@ export const SearchConditions = () => {
   return (
     //background: "#ddd"
     <Box sx={{ m: "8px 4px 16px 4px", p: "4px" }}>
-      <Box
+      <Grid container spacing={1}>
+        <Grid size={{ xs: 4, sm: 4, md: 4 }}>
+          <Autocomplete
+            disablePortal
+            size="small"
+            options={sports}
+            groupBy={(option) => option.category}
+            defaultValue={findDefaultSportOption}
+            getOptionLabel={(option) => option.name}
+            sx={{ minWidth: 100 }}
+            noOptionsText="查無選項"
+            renderInput={(params) => <TextField {...params} label="運動項目" />}
+          />
+        </Grid>
+        <Grid size={{ xs: 4, sm: 4, md: 4 }}>
+          <Autocomplete
+            disablePortal
+            size="small"
+            options={areas}
+            groupBy={(option) => option.region}
+            defaultValue={findDefaultAreaOption}
+            getOptionLabel={(option) => option.name}
+            sx={{ minWidth: 100 }}
+            noOptionsText="查無選項"
+            renderInput={(params) => <TextField {...params} label="地區" />}
+          />
+        </Grid>
+        <Grid size={{ xs: 4, sm: 4, md: 4 }}>
+          <DatePicker
+            sx={{
+              minWidth: 100,
+              width: "100%",
+              "& input": { padding: "8.5px 14px" },
+            }}
+            format="YYYY/MM/DD"
+            onChange={handleOnChangDate}
+          />
+        </Grid>
+
+        {/* <Box
         sx={{
           fontSize: "18px",
           display: "flex",
@@ -70,46 +109,14 @@ export const SearchConditions = () => {
           //value={filter.keyword}
           onSearch={handleOnChangKeyword}
         />
-      </Box>
-      <Grid container spacing={1}>
-        <Grid size={{ xs: 6, sm: 6, md: 3 }}>
-          <Autocomplete
-            disablePortal
-            size="small"
-            options={sports}
-            groupBy={(option) => option.category}
-            defaultValue={findDefaultSportOption}
-            getOptionLabel={(option) => option.name}
-            sx={{ minWidth: 150 }}
-            noOptionsText="查無選項"
-            renderInput={(params) => <TextField {...params} label="運動項目" />}
+      </Box> */}
+        <Grid size={{ xs: 7, sm: 7, md: 6 }}>
+          <SearchKeyword
+            //value={filter.keyword}
+            onSearch={handleOnChangKeyword}
           />
         </Grid>
-        <Grid size={{ xs: 6, sm: 6, md: 3 }}>
-          <Autocomplete
-            disablePortal
-            size="small"
-            options={areas}
-            groupBy={(option) => option.region}
-            defaultValue={findDefaultAreaOption}
-            getOptionLabel={(option) => option.name}
-            sx={{ minWidth: 150 }}
-            noOptionsText="查無選項"
-            renderInput={(params) => <TextField {...params} label="地區" />}
-          />
-        </Grid>
-        <Grid size={{ xs: 6, sm: 6, md: 3 }}>
-          <DatePicker
-            sx={{
-              minWidth: 170,
-              width: "100%",
-              "& input": { padding: "8.5px 14px" },
-            }}
-            format="YYYY/MM/DD"
-            onChange={handleOnChangDate}
-          />
-        </Grid>
-        <Grid size={{ xs: 6, sm: 6, md: 3 }}>
+        <Grid size={{ xs: 5, sm: 5, md: 6 }}>
           <ButtonGroupSorting
             sortInfo={{
               type: filter.sortType,

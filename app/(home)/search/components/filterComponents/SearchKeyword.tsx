@@ -25,11 +25,11 @@ export const SearchKeyword = ({ onSearch }: SearchKeywordProps) => {
     <Paper
       component="form"
       sx={{
-        p: "2px 4px",
+        p: "2px",
         display: "flex",
         alignItems: "center",
         maxWidth: "300px",
-        height: "40px",
+        height: "36px",
       }}
     >
       <InputBase
